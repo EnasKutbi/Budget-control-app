@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import IncomeForm from '../components/IncomeForm';
 import ExpenseForm from "../components/ExpenseForm";
@@ -7,12 +7,18 @@ import TransferForSaving from '../components/TransferForSaving'
 import './App.css';
 
 function App() {
+
+  const [savingAmount, setSavingAmount] = useState(0);
+  const getSavingAmount = (amount: number) => {
+    setSavingAmount(amount);
+  }
+
   return (
-    <div className='container'>
+    <div className="container">
       <IncomeForm />
       <ExpenseForm />
-      <TargetForSaving />
-      <TransferForSaving />
+      <TargetForSaving savingAmount = {savingAmount} />
+      <TransferForSaving onGetSavingAmount={getSavingAmount} />
     </div>
   );
 }

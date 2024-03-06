@@ -1,21 +1,20 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 
-const TargetForSaving = () => {
+const TargetForSaving = (props: {savingAmount: number}) => {
 
   const [target, setTarget] = useState<number>(0);
   
   const handleTargetChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setTarget(Number(value));
+    setTarget(Number(event.target.value));
   };
 
 const handleSubmit = (event: FormEvent) => {
   event.preventDefault();
-  setTarget((prevTarget) => {
-    return prevTarget+ target;
-  });
+  // setTarget((prevTarget) => {
+  //   return prevTarget+ target;
+  // });
   
-  setTarget(0);
+  // setTarget(0);
 };
 
   return (
@@ -35,7 +34,7 @@ const handleSubmit = (event: FormEvent) => {
         <button>Reset</button>
       </form>
       <p>Target: {target}</p>
-      <p>Current Saving: 1000</p>
+      <p>Current Saving: {props.savingAmount}</p>
       <p>
         <progress max={4000} value={1000} />
       </p>
