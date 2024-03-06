@@ -11,7 +11,9 @@ const TargetForSaving = () => {
 
 const handleSubmit = (event: FormEvent) => {
   event.preventDefault();
-  setTarget(target);
+  setTarget((prevTarget) => {
+    return prevTarget+ target;
+  });
   
   setTarget(0);
 };
