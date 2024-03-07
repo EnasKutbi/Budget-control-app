@@ -33,8 +33,8 @@ const handleSubmit = (event: FormEvent) => {
         </div>
         <button>Reset</button>
       </form>
-      <p>Target: {target}</p>
       <p>Current Saving: {props.savingAmount}</p>
+      <p>Target: {target}</p>
       <p>
         <progress max={4000} value={1000} />
       </p>

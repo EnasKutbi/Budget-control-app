@@ -8,13 +8,20 @@ type IncomeType = {
   date: string;
 }
 
-const IncomeForm = () => {
+type IncomeFormProps = { onGetTotalIncomeAmount :(amount: number) => void}
 
-  const [source, setSource] = useState<string>('');
+const IncomeForm = (props: IncomeFormProps) => {
+  const [source, setSource] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState<string>("");
 
   const [incomes, setIncomes] = useState<IncomeType[]>([]);
+
+  const totalAmount = incomes.reduce(
+    (total, currentValue) => total + currentValue.amount,
+    0
+  );
+  props.onGetTotalIncomeAmount(totalAmount);
 
   const handleSourceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -41,58 +48,62 @@ const IncomeForm = () => {
     };
     setIncomes((prevIncomes) => {
       return [...prevIncomes, income];
-    })
+    });
 
-    setSource('');
+    setSource("");
     setAmount(0);
-    setDate('');
-  }
+    setDate("");
+  };
 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-field">
-            <label htmlFor="source">Income source</label>
-            <input
-              type="text"
-              name="source"
-              id="source"
-              value={source}
-              onChange={handleSourceChange}
-              required
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="amount">Amount of Income</label>
-            <input
-              type="number"
-              name="amount"
-              id="amount"
-              value={amount}
-              onChange={handleAmountChange}
-              required
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="date">Date of Income</label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              value={date}
-              onChange={handleDateChange}
-              required
-            />
-          </div>
-          <button>Add income</button>
-        </form>
-        <ul>
-          {incomes.map((income) => {
-            return <li key={income.id}>{income.source}: {income.amount} EUR on {income.date}</li>
-          })}
-        </ul>
-      </div>
-    );
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-field">
+          <label htmlFor="source">Income source</label>
+          <input
+            type="text"
+            name="source"
+            id="source"
+            value={source}
+            onChange={handleSourceChange}
+            required
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="amount">Amount of Income</label>
+          <input
+            type="number"
+            name="amount"
+            id="amount"
+            value={amount}
+            onChange={handleAmountChange}
+            required
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="date">Date of Income</label>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            value={date}
+            onChange={handleDateChange}
+            required
+          />
+        </div>
+        <button>Add income</button>
+      </form>
+      <ul>
+        {incomes.map((income) => {
+          return (
+            <li key={income.id}>
+              {income.source}: {income.amount} EUR on {income.date}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export default IncomeForm;
