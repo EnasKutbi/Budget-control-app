@@ -106,8 +106,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
       <ul>{expenses.map((expense) => {
         return (
           <li key={expense.id}>
-            {expense.source}: {expense.amount} EUR on {expense.date}
-            <button onClick={() => handleDeleteExpenses(expense.id)}>Delete</button>
+            {expense.source}: {expense.amount} EUR on {expense.date} <button onClick={() => handleDeleteExpenses(expense.id)}>Delete</button>
           </li>
         );
       })}</ul>

@@ -1,27 +1,74 @@
 body {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   text-align: center;
-  align-items: center;
 }
-
-.container{
+.app{
+    height: 600px;
+    width: 900px;
+}
+.container {
   display: grid;
   grid-template-columns: repeat(3, auto);
   justify-content: stretch;
   align-items: center;
 }
-.income, .expense, .target{
+
+.income,
+.expense,
+.target {
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 20px;
-  background-color: cornflowerblue;
-  height: 200px;
+  height: 300px;
   width: 250px;
-  overflow-y: auto;
 }
 
-.transfer{
+form {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-field {
+  border-radius: 10px;
+  height: 50px;
+  width: 200px;
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.transfer {
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 20px;
-  background-color: cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: crimson;
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 0 10px gray;
+  cursor: pointer;
+}
+
+ul {
+  height: 70px;
+  border-radius: 10px;
+  overflow-y: auto;
+  list-style-type: circle;
+  padding: 1px 5px;
+}
+li {
+  padding: 5px;
 }

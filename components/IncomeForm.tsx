@@ -103,8 +103,7 @@ const IncomeForm = (props: IncomeFormProps) => {
         {incomes.map((income) => {
           return (
             <li key={income.id}>
-              {income.source}: {income.amount} EUR on {income.date}
-              <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
+              {income.source}: {income.amount} EUR on {income.date} <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
             </li>
           );
         })}

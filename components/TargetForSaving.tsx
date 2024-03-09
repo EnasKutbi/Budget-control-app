@@ -13,7 +13,7 @@ const handleSubmit = (event: FormEvent) => {
   setTarget(0);
 };
 
-  const percentage = target !== 0 ? (target / props.savingAmount) * 100 : 0;
+  const percentage = target !== 0 ? (props.savingAmount / target) * 100 : 0;
   
   return (
     <div className="target">
