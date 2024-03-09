@@ -10,11 +10,7 @@ const TargetForSaving = (props: {savingAmount: number}) => {
 
 const handleSubmit = (event: FormEvent) => {
   event.preventDefault();
-  // setTarget((prevTarget) => {
-  //   return prevTarget+ target;
-  // });
-  
-  // setTarget(0);
+  setTarget(0);
 };
 
   return (
@@ -36,7 +32,7 @@ const handleSubmit = (event: FormEvent) => {
       <p>Current Saving: {props.savingAmount}</p>
       <p>Target: {target}</p>
       <p>
-        <progress max={4000} value={1000} />
+        progress: <progress max={4000} value={1000} />
       </p>
     </div>
   );

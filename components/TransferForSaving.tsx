@@ -18,9 +18,11 @@ const TransferForSaving = (props: TransferForSavingProps) => {
     props.onGetSavingAmount(amount);
   };
 
+  const balance = props.totalIncomeAmount - props.totalExpenseAmount - amount;
+
   return (
     <div>
-      <h3>Current Balance: {props.totalIncomeAmount - props.totalExpenseAmount}</h3>
+      <h3>Current Balance: {balance}</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="source">Transfer to save account</label>

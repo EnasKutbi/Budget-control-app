@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import IncomeForm from '../components/IncomeForm';
+import React, { useState } from "react";
+
+import IncomeForm from "../components/IncomeForm";
 import ExpenseForm from "../components/ExpenseForm";
 import TargetForSaving from "../components/TargetForSaving";
-import TransferForSaving from '../components/TransferForSaving'
-import './App.css';
+import TransferForSaving from "../components/TransferForSaving";
+import "./App.css";
 
 function App() {
-
   const [savingAmount, setSavingAmount] = useState(0);
   const [totalIncomeAmount, setTotalIncomeAmount] = useState(0);
   const [totalExpenseAmount, setTotalExpenseAmount] = useState(0);

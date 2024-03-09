@@ -55,6 +55,12 @@ const IncomeForm = (props: IncomeFormProps) => {
     setDate("");
   };
 
+  const handleDeleteIncome = (id?: string) => {
+    setIncomes((prevIncomes) => {
+      return prevIncomes.filter((income) => income.id !== id);
+    });
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -98,6 +104,7 @@ const IncomeForm = (props: IncomeFormProps) => {
           return (
             <li key={income.id}>
               {income.source}: {income.amount} EUR on {income.date}
+              <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
             </li>
           );
         })}

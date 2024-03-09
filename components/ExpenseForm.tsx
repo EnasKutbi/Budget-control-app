@@ -57,7 +57,13 @@ const ExpenseForm = (props: ExpenseFormProps) => {
       setSource("");
       setAmount(0);
       setDate("");
-    };
+  };
+  
+  const handleDeleteExpenses = (id?: string) => {
+    setExpenses((prevExpenses) => {
+      return prevExpenses.filter((Expense) => Expense.id !== id);
+    });
+  };
 
   return (
     <div>
@@ -101,6 +107,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
         return (
           <li key={expense.id}>
             {expense.source}: {expense.amount} EUR on {expense.date}
+            <button onClick={() => handleDeleteExpenses(expense.id)}>Delete</button>
           </li>
         );
       })}</ul>
