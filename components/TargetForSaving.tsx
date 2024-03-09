@@ -13,6 +13,8 @@ const handleSubmit = (event: FormEvent) => {
   setTarget(0);
 };
 
+  const percentage = target !== 0 ? (target / props.savingAmount) * 100 : 0;
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -32,7 +34,7 @@ const handleSubmit = (event: FormEvent) => {
       <p>Current Saving: {props.savingAmount}</p>
       <p>Target: {target}</p>
       <p>
-        progress: <progress max={4000} value={1000} />
+        progress {percentage} % : <progress max={100} value={percentage} />
       </p>
     </div>
   );
