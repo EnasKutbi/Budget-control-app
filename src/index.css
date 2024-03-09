@@ -1,21 +1,27 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  text-align: center;
+  align-items: center;
 }
 
 .container{
   display: grid;
   grid-template-columns: repeat(3, auto);
+  justify-content: stretch;
   align-items: center;
 }
-form {
+.income, .expense, .target{
   margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 20px;
+  background-color: cornflowerblue;
+  height: 200px;
+  width: 250px;
+  overflow-y: auto;
+}
+
+.transfer{
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 20px;
+  background-color: cornflowerblue;
 }

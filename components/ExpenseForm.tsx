@@ -66,7 +66,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
   };
 
   return (
-    <div>
+    <div className="expense">
       <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="source">Expense source</label>

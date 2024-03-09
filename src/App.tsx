@@ -24,10 +24,12 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <IncomeForm onGetTotalIncomeAmount={getTotalIncomeAmount} />
-      <ExpenseForm onGetTotalExpenseAmount={getTotalExpenseAmount} />
-      <TargetForSaving savingAmount={savingAmount} />
+    <div className="app">
+      <div className="container">
+        <IncomeForm onGetTotalIncomeAmount={getTotalIncomeAmount} />
+        <ExpenseForm onGetTotalExpenseAmount={getTotalExpenseAmount} />
+        <TargetForSaving savingAmount={savingAmount} />
+      </div>
       <TransferForSaving
         onGetSavingAmount={getSavingAmount}
         totalIncomeAmount={totalIncomeAmount}

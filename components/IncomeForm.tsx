@@ -62,7 +62,7 @@ const IncomeForm = (props: IncomeFormProps) => {
   }
 
   return (
-    <div>
+    <div className='income'>
       <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="source">Income source</label>
