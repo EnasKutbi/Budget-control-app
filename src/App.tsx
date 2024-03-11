@@ -25,6 +25,7 @@ function App() {
 
   return (
     <div className="app">
+      <h1>Budget App</h1>
       <div className="container">
         <IncomeForm onGetTotalIncomeAmount={getTotalIncomeAmount} />
         <ExpenseForm onGetTotalExpenseAmount={getTotalExpenseAmount} />

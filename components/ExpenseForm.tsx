@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { text } from "stream/consumers";
 
 type ExpenseType = {
   id?: string;
@@ -73,7 +72,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
           <input
             type="text"
             name="source"
-            id="source"
+            id="expense-source"
             value={source}
             onChange={handleSourceChange}
             required
@@ -84,7 +83,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
           <input
             type="number"
             name="amount"
-            id="amount"
+            id="expense-amount"
             value={amount}
             onChange={handleAmountChange}
             required
@@ -95,7 +94,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
           <input
             type="date"
             name="date"
-            id="date"
+            id="expense-date"
             value={date}
             onChange={handleDateChange}
             required
@@ -103,13 +102,18 @@ const ExpenseForm = (props: ExpenseFormProps) => {
         </div>
         <button>Add Expense</button>
       </form>
-      <ul>{expenses.map((expense) => {
-        return (
-          <li key={expense.id}>
-            {expense.source}: {expense.amount} EUR on {expense.date} <button onClick={() => handleDeleteExpenses(expense.id)}>Delete</button>
-          </li>
-        );
-      })}</ul>
+      <ul>
+        {expenses.map((expense) => {
+          return (
+            <li key={expense.id}>
+              {expense.source}: {expense.amount} EUR on {expense.date}{" "}
+              <button onClick={() => handleDeleteExpenses(expense.id)}>
+                Delete
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

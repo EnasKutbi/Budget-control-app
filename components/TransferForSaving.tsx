@@ -29,7 +29,7 @@ const TransferForSaving = (props: TransferForSavingProps) => {
           <input
             type="number"
             name="amount"
-            id="amount"
+            id="transfer-amount"
             onChange={handleAmountChange}
             required
           />

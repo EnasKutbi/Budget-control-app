@@ -62,14 +62,14 @@ const IncomeForm = (props: IncomeFormProps) => {
   }
 
   return (
-    <div className='income'>
+    <div className="income">
       <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="source">Income source</label>
           <input
             type="text"
             name="source"
-            id="source"
+            id="income-source"
             value={source}
             onChange={handleSourceChange}
             required
@@ -80,7 +80,7 @@ const IncomeForm = (props: IncomeFormProps) => {
           <input
             type="number"
             name="amount"
-            id="amount"
+            id="income-amount"
             value={amount}
             onChange={handleAmountChange}
             required
@@ -91,7 +91,7 @@ const IncomeForm = (props: IncomeFormProps) => {
           <input
             type="date"
             name="date"
-            id="date"
+            id="income-date"
             value={date}
             onChange={handleDateChange}
             required
@@ -103,7 +103,10 @@ const IncomeForm = (props: IncomeFormProps) => {
         {incomes.map((income) => {
           return (
             <li key={income.id}>
-              {income.source}: {income.amount} EUR on {income.date} <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
+              {income.source}: {income.amount} EUR on {income.date}{" "}
+              <button onClick={() => handleDeleteIncome(income.id)}>
+                Delete
+              </button>
             </li>
           );
         })}

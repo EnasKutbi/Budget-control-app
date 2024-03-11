@@ -23,7 +23,7 @@ const handleSubmit = (event: FormEvent) => {
           <input
             type="number"
             name="amount"
-            id="amount"
+            id="target-amount"
             value={target}
             onChange={handleTargetChange}
             required
