@@ -1,41 +1,24 @@
 import React, { useState } from "react";
 
-import IncomeForm from "../components/IncomeForm";
-import ExpenseForm from "../components/ExpenseForm";
-import TargetForSaving from "../components/TargetForSaving";
-import TransferForSaving from "../components/TransferForSaving";
 import "./App.css";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import Home from '../pages/Home';
+import Main from "../pages/Main";
+import Error from "../pages/Error";
+import Navbar from "../components/layout/Navbar";
 
 function App() {
-  const [savingAmount, setSavingAmount] = useState(0);
-  const [totalIncomeAmount, setTotalIncomeAmount] = useState(0);
-  const [totalExpenseAmount, setTotalExpenseAmount] = useState(0);
-
-  const getSavingAmount = (amount: number) => {
-    setSavingAmount(amount);
-  };
-
-  const getTotalIncomeAmount = (amount: number) => {
-    setTotalIncomeAmount(amount);
-  };
-
-  const getTotalExpenseAmount = (amount: number) => {
-    setTotalExpenseAmount(amount);
-  };
 
   return (
-    <div className="app">
-      <h1>Budget App</h1>
-      <div className="container">
-        <IncomeForm onGetTotalIncomeAmount={getTotalIncomeAmount} />
-        <ExpenseForm onGetTotalExpenseAmount={getTotalExpenseAmount} />
-        <TargetForSaving savingAmount={savingAmount} />
-      </div>
-      <TransferForSaving
-        onGetSavingAmount={getSavingAmount}
-        totalIncomeAmount={totalIncomeAmount}
-        totalExpenseAmount={totalExpenseAmount}
-      />
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="*" element={<Error /> } />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,25 +1,41 @@
 body {
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-.app{
-    height: 600px;
-    width: 900px;
+
+nav{
+  background-color:rgb(199, 159, 167);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 400px;
+  align-items: center;
 }
+
+.app {
+  height: 600px;
+  width: 900px;
+  background-color: gray;
+  border-radius: 20px;
+  justify-content: center;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  justify-content: stretch;
+  justify-content: center;
   align-items: center;
+
 }
 
 .income,
 .expense,
 .target {
-  margin: 1rem;
+  background-color: darkgray;
+  margin: 1rem 0.5rem;
   padding: 0.5rem;
   border-radius: 20px;
   height: 300px;
@@ -28,8 +44,8 @@ body {
 
 form {
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-field {
@@ -44,6 +60,10 @@ form {
 }
 
 .transfer {
+  background-color: darkgrey;
+  border-radius: 20px;
+  height: 150px;
+  width: 250px;
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 20px;
@@ -51,6 +71,7 @@ form {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin: auto auto;
 }
 
 button {
@@ -69,6 +90,43 @@ ul {
   list-style-type: circle;
   padding: 1px 5px;
 }
+
 li {
   padding: 5px;
+}
+
+input {
+  height: 27px;
+  width: 200px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+}
+
+.home {
+  height: 600px;
+  width: 900px;
+  margin-top: 20px;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home h1 {
+  text-align: center;
+  margin-right: 100px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: dimgrey;
 }
