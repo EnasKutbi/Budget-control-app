@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import IncomeForm from "../components/IncomeForm";
 import ExpenseForm from "../components/ExpenseForm";
@@ -6,21 +6,26 @@ import TargetForSaving from "../components/TargetForSaving";
 import TransferForSaving from "../components/TransferForSaving";
 
 const Main = () => {
-    const [savingAmount, setSavingAmount] = useState(0);
-    const [totalIncomeAmount, setTotalIncomeAmount] = useState(0);
-    const [totalExpenseAmount, setTotalExpenseAmount] = useState(0);
+  const [savingAmount, setSavingAmount] = useState(0);
+  const [totalIncomeAmount, setTotalIncomeAmount] = useState(0);
+  const [totalExpenseAmount, setTotalExpenseAmount] = useState(0);
 
-    const getSavingAmount = (amount: number) => {
+  const getSavingAmount = useCallback(
+    (amount: number) => {
       setSavingAmount(amount);
-    };
+    },
+    [savingAmount]
+  );
 
-    const getTotalIncomeAmount = (amount: number) => {
-      setTotalIncomeAmount(amount);
-    };
+    const getTotalIncomeAmount = useCallback((amount: number) => {
+        setTotalIncomeAmount(amount);
+    }, [totalIncomeAmount]);
 
-    const getTotalExpenseAmount = (amount: number) => {
-      setTotalExpenseAmount(amount);
-    };
+    const getTotalExpenseAmount = useCallback((amount: number) => {
+        setTotalExpenseAmount(amount);
+    },
+        [totalExpenseAmount]);
+
   return (
     <div className="app">
       <h1>Budget App</h1>

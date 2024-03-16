@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./App.css";
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from '../pages/Home';
 import Main from "../pages/Main";
 import Error from "../pages/Error";
