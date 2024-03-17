@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useForm } from "react-hook-form";
 
 type ExpenseType = {
   id?: string;
@@ -14,11 +15,24 @@ type ExpenseFormProps = {
 
 const ExpenseForm = (props: ExpenseFormProps) => {
 
-  const [source, setSource] = useState<string>("");
-  const [amount, setAmount] = useState<number>(0);
-  const [date, setDate] = useState<string>("");
-
   const [expenses, setExpenses] = useState<ExpenseType[]>([]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    const expense = {
+      id: uuidv4(),
+      source: data.source,
+      amount: data.amount,
+      date: data.date,
+    };
+    setExpenses((prevExpenses) => [...prevExpenses, expense]);
+    reset();
+  };
 
   useEffect(() => {
     const totalAmount = expenses.reduce(
@@ -28,37 +42,6 @@ const ExpenseForm = (props: ExpenseFormProps) => {
     props.onGetTotalExpenseAmount(totalAmount);
   }, [expenses, props]);
 
-    const handleSourceChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setSource(value);
-    };
-
-    const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setAmount(Number(value));
-    };
-
-    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setDate(value);
-    };
-
-    const handleSubmit = (event: FormEvent) => {
-      event.preventDefault();
-      const expense = {
-        id: uuidv4(),
-        source: source,
-        amount: amount,
-        date: date,
-      };
-      setExpenses((prevExpenses) => {
-        return [...prevExpenses, expense];
-      });
-
-      setSource("");
-      setAmount(0);
-      setDate("");
-  };
   
   const handleDeleteExpenses = (id?: string) => {
     setExpenses((prevExpenses) => {
@@ -68,39 +51,42 @@ const ExpenseForm = (props: ExpenseFormProps) => {
 
   return (
     <div className="expense">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-field">
           <label htmlFor="expense-source">Expense source</label>
           <input
             type="text"
-            name="source"
             id="expense-source"
-            value={source}
-            onChange={handleSourceChange}
-            required
+            {...register("source", { required: "Source is required" })}
           />
+          {errors.source && (
+            <span className="error">{errors.source.message?.toString()}</span>
+          )}
         </div>
         <div className="form-field">
           <label htmlFor="expense-amount">Amount of Expense</label>
           <input
             type="number"
-            name="amount"
             id="expense-amount"
-            value={amount}
-            onChange={handleAmountChange}
-            required
+            {...register("amount", {
+              required: "Amount is required",
+              min: { value: 0, message: "Amount must be a positive number" },
+            })}
           />
+          {errors.amount && (
+            <span className="error">{errors.amount.message?.toString()}</span>
+          )}
         </div>
         <div className="form-field">
           <label htmlFor="expense-date">Date of Expense</label>
           <input
             type="date"
-            name="date"
             id="expense-date"
-            value={date}
-            onChange={handleDateChange}
-            required
+            {...register("date", { required: "Date is required" })}
           />
+          {errors.date && (
+            <span className="error">{errors.date.message?.toString()}</span>
+          )}
         </div>
         <button>Add Expense</button>
       </form>

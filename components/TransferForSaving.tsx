@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
+import { useForm } from "react-hook-form";
 
 type TransferForSavingProps = {
   onGetSavingAmount: (amount: number) => void;
@@ -7,34 +8,38 @@ type TransferForSavingProps = {
 };
 
 const TransferForSaving = (props: TransferForSavingProps) => {
-  const [amount, setAmount] = useState(0);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(event.target.value));
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const onSubmit = (data: Record<string, any>) => {
+    const amount = Number(data.amount);
     props.onGetSavingAmount(amount);
   };
 
-  const balance = props.totalIncomeAmount - props.totalExpenseAmount - amount;
+  const balance = props.totalIncomeAmount - props.totalExpenseAmount;
 
   return (
     <div className="transfer">
       <h3>Current Balance: {balance}</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-field">
           <label htmlFor="transfer-amount">Transfer to save account</label>
           <input
             type="number"
-            name="amount"
             id="transfer-amount"
-            onChange={handleAmountChange}
-            required
+            {...register("amount", {
+              required: true,
+              validate: {
+                positive: (value) => parseFloat(value) > 0,
+              },
+            })}
           />
+          {errors.amount && <span>the number should be positive</span>}
         </div>
-        <button>Transfer</button>
+        <button type="submit">Transfer</button>
       </form>
     </div>
   );
