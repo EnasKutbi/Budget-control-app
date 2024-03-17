@@ -5,7 +5,7 @@ import ExpenseForm from "../components/ExpenseForm";
 import TargetForSaving from "../components/TargetForSaving";
 import TransferForSaving from "../components/TransferForSaving";
 
-const Main = () => {
+const Budget = () => {
   const [savingAmount, setSavingAmount] = useState(0);
   const [totalIncomeAmount, setTotalIncomeAmount] = useState(0);
   const [totalExpenseAmount, setTotalExpenseAmount] = useState(0);
@@ -43,4 +43,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Budget;
