@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 type ExpenseType = {
@@ -20,11 +20,13 @@ const ExpenseForm = (props: ExpenseFormProps) => {
 
   const [expenses, setExpenses] = useState<ExpenseType[]>([]);
 
+  useEffect(() => {
     const totalAmount = expenses.reduce(
       (total, currentValue) => total + currentValue.amount,
       0
     );
     props.onGetTotalExpenseAmount(totalAmount);
+  }, [expenses, props]);
 
     const handleSourceChange = (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
@@ -68,7 +70,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
     <div className="expense">
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-          <label htmlFor="source">Expense source</label>
+          <label htmlFor="expense-source">Expense source</label>
           <input
             type="text"
             name="source"
@@ -79,7 +81,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
           />
         </div>
         <div className="form-field">
-          <label htmlFor="amount">Amount of Expense</label>
+          <label htmlFor="expense-amount">Amount of Expense</label>
           <input
             type="number"
             name="amount"
@@ -90,7 +92,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
           />
         </div>
         <div className="form-field">
-          <label htmlFor="date">Date of Expense</label>
+          <label htmlFor="expense-date">Date of Expense</label>
           <input
             type="date"
             name="date"

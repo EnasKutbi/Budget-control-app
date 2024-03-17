@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 
 type IncomeType = {
@@ -17,11 +17,13 @@ const IncomeForm = (props: IncomeFormProps) => {
 
   const [incomes, setIncomes] = useState<IncomeType[]>([]);
 
-  const totalAmount = incomes.reduce(
-    (total, currentValue) => total + currentValue.amount,
-    0
-  );
-  props.onGetTotalIncomeAmount(totalAmount);
+  useEffect(() => {
+    const totalAmount = incomes.reduce(
+      (total, currentValue) => total + currentValue.amount,
+      0
+    );
+    props.onGetTotalIncomeAmount(totalAmount);
+  }, [incomes, props]);
 
   const handleSourceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -65,7 +67,7 @@ const IncomeForm = (props: IncomeFormProps) => {
     <div className="income">
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-          <label htmlFor="source">Income source</label>
+          <label htmlFor="income-source">Income source</label>
           <input
             type="text"
             name="source"
@@ -76,7 +78,7 @@ const IncomeForm = (props: IncomeFormProps) => {
           />
         </div>
         <div className="form-field">
-          <label htmlFor="amount">Amount of Income</label>
+          <label htmlFor="income-amount">Amount of Income</label>
           <input
             type="number"
             name="amount"
@@ -87,7 +89,7 @@ const IncomeForm = (props: IncomeFormProps) => {
           />
         </div>
         <div className="form-field">
-          <label htmlFor="date">Date of Income</label>
+          <label htmlFor="income-date">Date of Income</label>
           <input
             type="date"
             name="date"

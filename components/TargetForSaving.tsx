@@ -19,7 +19,7 @@ const handleSubmit = (event: FormEvent) => {
     <div className="target">
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-          <label htmlFor="source">Set Target</label>
+          <label htmlFor="target-amount">Set Target</label>
           <input
             type="number"
             name="amount"

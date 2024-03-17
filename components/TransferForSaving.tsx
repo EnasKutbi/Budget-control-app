@@ -25,7 +25,7 @@ const TransferForSaving = (props: TransferForSavingProps) => {
       <h3>Current Balance: {balance}</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-          <label htmlFor="source">Transfer to save account</label>
+          <label htmlFor="transfer-amount">Transfer to save account</label>
           <input
             type="number"
             name="amount"
